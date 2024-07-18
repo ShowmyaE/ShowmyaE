@@ -40,7 +40,7 @@ app.get('/', async (req, res) => {
   res.send(userDbDetails)
 })
 
-app.post('/', async (req, res) => {
+app.post('/insertCard', async (req, res) => {
   const {title, description, date} = request.body
 const insertNotes = `INSERT INTO google_keep (id, title, description, date) VALUES(2,'${title}','${description}','${date}')`
 const userDbDetails = await db.run(insertNotes)
