@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
   const getUserQuery = `select * from google_keep;`
   const userDbDetails = await db.get(getUserQuery)
   console.log("DB Value", userDbDetails)
-  res.send("userDbDetails")
+  res.send(userDbDetails)
 })
 
 // app.listen(3000)
