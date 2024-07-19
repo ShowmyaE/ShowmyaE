@@ -44,7 +44,9 @@ app.get('/', async (req, res) => {
 
 app.post('/insertCard', async (req, res) => {
   const {title, description, date} = req.body
-const insertNotes = `INSERT INTO google_keep (id, title, description, date) VALUES(4,'${title}','${description}','${date}');`
+    const getUserQuery = `select * from google_keep;`
+  const getNoteLength = await db.all(getUserQuery)
+const insertNotes = `INSERT INTO google_keep (id, title, description, date) VALUES('${getNoteLength.length+1}','${title}','${description}','${date}');`
 console.log("INSERT", insertNotes)
 const userDbDetails = await db.run(insertNotes)
 console.log("DB Value", userDbDetails)
