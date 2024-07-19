@@ -37,14 +37,15 @@ app.get('/', async (req, res) => {
     // const getUserQuery = 'create table google_keep(id INT PRIMARY KEY, title VARCHAR(50), description VARCHAR(500), date VARCHAR(25));'
     // const getUserQuery = "INSERT INTO google_keep (id, title, description, date) VALUES (1, 'cardDetails', 'axis bank details', 'July 18, 2024');"
   const getUserQuery = `select * from google_keep;`
-  const userDbDetails = await db.get(getUserQuery)
+  const userDbDetails = await db.all(getUserQuery)
   console.log("DB Value", userDbDetails)
   res.send(userDbDetails)
 })
 
 app.post('/insertCard', async (req, res) => {
   const {title, description, date} = req.body
-const insertNotes = `INSERT INTO google_keep (id, title, description, date) VALUES(3,'${title}','${description}','${date}')`
+const insertNotes = `INSERT INTO google_keep (id, title, description, date) VALUES(4,'${title}','${description}','${date}');`
+console.log("INSERT", insertNotes)
 const userDbDetails = await db.run(insertNotes)
 console.log("DB Value", userDbDetails)
 res.send(userDbDetails)
